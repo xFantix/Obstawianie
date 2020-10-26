@@ -2,34 +2,57 @@ import React from 'react';
 import styled from 'styled-components'
 
 const ContainerStyle = styled.div`
-    border:1px solid #747475;
+    /* border:1px solid #f7f70a; */
     display:flex;
     margin:15px 25px;
     border-radius:3px;
+    background-color:#42413e;
 
 `
 const StyleListElements = styled.li`
     text-decoration:none;
     list-style:none;
     padding: 7px 10px;
-    font-family: 'inherit', sans-serif;
-    font-weight:600;
+    font-family: 'Roboto', sans-serif;
+    font-weight:300;
     color:#fff;
-    opacity:.8;
+  
     
 `
 const ListStyle = styled.ul`
-    width:60%;
+    width:55%;
 `
 const ContainerButton = styled.div`
-    width:40%
+    width:45%;
     display:flex;
+    align-items:center;
+    justify-content:flex-end;
 `
-
+const ButtonStyle = styled.button`
+    background: #282728;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color:white;
+    height:70%;
+    width:80px;
+    border-radius:2px;
+    margin:0px 10px;
+    
+    
+`
+const test = styled.button`
+background-color:red;
+`
 
 const FootballElement = (props) => {
 
     const { HomeName, VisitName, HomeWin, VisitWin, Draw, } = props.element
+
+    const handlePushButton = (event) => {
+        console.log(event);
+
+    }
 
     return (
         <ContainerStyle className={'ContainerMatch'}>
@@ -42,9 +65,9 @@ const FootballElement = (props) => {
                 </StyleListElements>
             </ListStyle>
             <ContainerButton className={'ContainerMatch__buttonValue'}>
-                <button>{HomeWin}</button>
-                <button>{Draw}</button>
-                <button>{VisitWin}</button>
+                <ButtonStyle onClick={handlePushButton} >{HomeWin}</ButtonStyle>
+                {Draw && <ButtonStyle >{Draw}</ButtonStyle>}
+                <ButtonStyle >{VisitWin}</ButtonStyle>
             </ContainerButton>
         </ContainerStyle>
     );

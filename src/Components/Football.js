@@ -1,14 +1,14 @@
 import React from 'react';
-import FootballElement from './FootballElement'
+import MatchEvent from './MatchEvent'
 
 
 const FootballList = [
     {
         id: 1,
-        HomeName: "Fc Barcelona",
+        HomeName: "FC Barcelona",
         VisitName: "Real Madryt",
         HomeWin: 1.89,
-        VisitWin: 2.00,
+        VisitWin: 2.10,
         Draw: 3.20,
 
     },
@@ -51,7 +51,7 @@ const FootballList = [
 ]
 
 
-const FootballElements = FootballList.map(element => <FootballElement element={element} id={element.id} />);
+const FootballElements = FootballList.map(element => <MatchEvent element={element} key={element.id} />);
 
 const Football = () => {
     return (

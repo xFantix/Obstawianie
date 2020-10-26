@@ -1,14 +1,14 @@
 import React from 'react';
 import MatchEvent from '../Components/MatchEvent'
 
-const CounterStrike = () => {
 
+const LeagueOfLegends = () => {
 
-    const CounterStrikeList = [
+    const LeagueOfLegendsList = [
         {
             id: 1,
-            HomeName: "Virtus.pro",
-            VisitName: "Nemiga",
+            HomeName: "Excel Esports",
+            VisitName: "DAMWON Gaming",
             HomeWin: 1.89,
             VisitWin: 2.10,
 
@@ -16,8 +16,8 @@ const CounterStrike = () => {
         },
         {
             id: 2,
-            HomeName: "Natus Vincere",
-            VisitName: "Mousesport",
+            HomeName: "G2 Esports",
+            VisitName: "Team Vitality",
             HomeWin: 1.59,
             VisitWin: 2.30,
 
@@ -34,8 +34,8 @@ const CounterStrike = () => {
         },
         {
             id: 4,
-            HomeName: "Gambit",
-            VisitName: "ForZe",
+            HomeName: "CrowCrowd",
+            VisitName: "LNG Esports",
             HomeWin: 1.80,
             VisitWin: 2.30,
 
@@ -43,22 +43,23 @@ const CounterStrike = () => {
         },
         {
             id: 5,
-            HomeName: "BIG",
-            VisitName: "Godsent",
+            HomeName: "Unicorns Of Love",
+            VisitName: "Rainbow7",
             HomeWin: 1.80,
             VisitWin: 2.30,
 
 
         }
+
     ]
 
-    const CounterStrikeElement = CounterStrikeList.map(element => <MatchEvent key={element.id} element={element} />);
+    const LeagueOfLegendsElement = LeagueOfLegendsList.map(element => <MatchEvent key={element.id} element={element} />)
 
     return (
         <>
-            {CounterStrikeElement}
+            {LeagueOfLegendsElement}
         </>
     );
 }
 
-export default CounterStrike;
+export default LeagueOfLegends;

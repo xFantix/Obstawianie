@@ -19,7 +19,7 @@ const Navigation = styled.nav`
 const StyledNavLink = styled(NavLink)`
     color:black;
     text-decoration:none;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight:500;
     font-size:23px;
     padding:20px 0px;
@@ -43,8 +43,8 @@ const Header = () => {
                 <StyledNavLink activeStyle={{ color: '#deb028', }} className={'header__navigation__navLink'} to='/League-of-Legends'>
                     League of Legends
                     </StyledNavLink>
-                <StyledNavLink activeStyle={{ color: '#deb028', }} className={'header__navigation__navLink'} to='/Contact'>
-                    Contact
+                <StyledNavLink activeStyle={{ color: '#deb028', }} className={'header__navigation__navLink'} to='/Cash-In'>
+                    Cash in
                     </StyledNavLink>
 
             </Navigation>
