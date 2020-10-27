@@ -41,9 +41,7 @@ const ButtonStyle = styled.button`
     
     
 `
-const test = styled.button`
-background-color:red;
-`
+
 
 const FootballElement = (props) => {
 

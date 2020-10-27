@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, NavLink, Route, Switch, } from 'react-router-dom'
-import React, { useContext, useState, } from 'react';
+import React, { useState, } from 'react';
 import styled from 'styled-components'
 
-import { CashInContext, cashInObject } from './Components/Context/CashInContext'
+import { AppContext, defaultObject } from './Components/Context/AppContext'
 
 import Header from './Components/Header'
 import Football from './Components/Football'
 import CounterStrike from './Components/CounterStrike'
 import LeagueOfLegends from './Components/LeagueOfLegends';
-import CashIn from './Components/CashIn';
+import Cash from './Components/Cash';
+import Footer from './Components/Footer'
+
 
 const Container = styled.div`
   min-height:100vh;
@@ -21,6 +23,7 @@ const Container = styled.div`
 const MainStyle = styled.main`
   width:100%;
   display:flex;
+  height:calc(100vh - 67px - 50px);
 `
 const SectionStyle = styled.section`
   width:50%;
@@ -33,35 +36,52 @@ const SectionStyle = styled.section`
 
 const App = () => {
 
-  const [firstName, setFirstName] = useState(cashInObject.firstName);
-  const [lastName, setLastName] = useState(cashInObject.lastName);
-  const [email, setEmail] = useState(cashInObject.email);
-  const [valueMoney, setValueMoney] = useState(cashInObject.valueMoney);
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [valueMoney, setValueMoney] = useState("");
+
+
+  const changeInputValue = (e) => {
+
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name === "firstName") {
+      { setfirstName(value) }
+    }
+    else if (name === "lastName") setLastName(value);
+    else if (name === "email") setEmail(value);
+    else if (name === "valueMoney") setValueMoney(value);
+
+  }
 
 
   return (
     <Router>
       <Container className="App">
         <Header />
-        <MainStyle className={'main'}>
-          <CashInContext.Provider value={{
-
-            firstName,
-            lastName,
-            email,
-            valueMoney,
-
-          }}>
+        <MainStyle >
+          <AppContext.Provider
+            value={{
+              firstName,
+              lastName,
+              email,
+              valueMoney,
+              changeInputValue,
+            }}
+          >
             <SectionStyle className={'main__section'}>
               <Switch>
                 <Route path='/Football' exact component={Football} />
                 <Route path='/Counter-Strike' component={CounterStrike} />
                 <Route path='/League-Of-Legends' component={LeagueOfLegends} />
-                <Route path='/Cash-In' component={CashIn} />
+                <Route path='/Cash-In' component={Cash} />
               </Switch>
             </SectionStyle>
-          </CashInContext.Provider>
+          </AppContext.Provider>
         </MainStyle>
+        <Footer />
       </Container>
     </Router >
   );
