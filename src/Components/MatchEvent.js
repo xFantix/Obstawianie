@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components'
-
+import { AppContext } from './Context/AppContext'
 const ContainerStyle = styled.div`
     /* border:1px solid #f7f70a; */
     display:flex;
     margin:15px 25px;
     border-radius:3px;
     background-color:#42413e;
-
+    
 `
 const StyleListElements = styled.li`
     text-decoration:none;
@@ -47,10 +47,7 @@ const FootballElement = (props) => {
 
     const { HomeName, VisitName, HomeWin, VisitWin, Draw, } = props.element
 
-    const handlePushButton = (event) => {
-        console.log(event);
-
-    }
+    const { handleBetTeam } = useContext(AppContext);
 
     return (
         <ContainerStyle className={'ContainerMatch'}>
@@ -63,9 +60,9 @@ const FootballElement = (props) => {
                 </StyleListElements>
             </ListStyle>
             <ContainerButton className={'ContainerMatch__buttonValue'}>
-                <ButtonStyle onClick={handlePushButton} >{HomeWin}</ButtonStyle>
-                {Draw && <ButtonStyle >{Draw}</ButtonStyle>}
-                <ButtonStyle >{VisitWin}</ButtonStyle>
+                <ButtonStyle value={HomeWin} onClick={handleBetTeam} name={HomeName}  >{HomeWin}</ButtonStyle>
+                {Draw && <ButtonStyle value={Draw} onClick={handleBetTeam} name="Draw" >{Draw}</ButtonStyle>}
+                <ButtonStyle name={VisitName} value={VisitWin} onClick={handleBetTeam}>{VisitWin}</ButtonStyle>
             </ContainerButton>
         </ContainerStyle>
     );

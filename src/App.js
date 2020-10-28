@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, NavLink, Route, Switch, } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
 import React, { useState, } from 'react';
 import styled from 'styled-components'
 
@@ -9,8 +9,7 @@ import Football from './Components/Football'
 import CounterStrike from './Components/CounterStrike'
 import LeagueOfLegends from './Components/LeagueOfLegends';
 import Cash from './Components/Cash';
-import Footer from './Components/Footer'
-
+import BetInformation from './Components/BetInformation'
 
 const Container = styled.div`
   min-height:100vh;
@@ -23,12 +22,13 @@ const Container = styled.div`
 const MainStyle = styled.main`
   width:100%;
   display:flex;
-  height:calc(100vh - 67px - 50px);
+  flex-wrap:wrap;
 `
 const SectionStyle = styled.section`
   width:50%;
   display:flex;
   flex-direction:column;
+  padding:30px 0px;
   @media(max-width:700px){
     width:100%;
   }
@@ -39,7 +39,13 @@ const App = () => {
   const [firstName, setfirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [valueMoney, setValueMoney] = useState("");
+  const [valueMoney, setValueMoney] = useState(0);
+
+  const [bankMoney, setbankMoney] = useState(0);
+
+  const [yourBets, setyourBets] = useState([]);
+
+
 
 
   const changeInputValue = (e) => {
@@ -56,6 +62,24 @@ const App = () => {
 
   }
 
+  const handleSendSubmit = (e) => {
+    // e.preventDefault();
+
+    let value = parseInt(valueMoney);
+    setbankMoney((prevState) => prevState + value)
+
+  }
+
+  const handleBetTeam = (e) => {
+    e.preventDefault();
+
+    let Bet = {
+      betTeam: e.target.name,
+      betValue: e.target.value,
+    }
+    setyourBets((prevState) => [...prevState, Bet]);
+  }
+
 
   return (
     <Router>
@@ -69,6 +93,10 @@ const App = () => {
               email,
               valueMoney,
               changeInputValue,
+              bankMoney,
+              handleSendSubmit,
+              handleBetTeam,
+              setyourBets,
             }}
           >
             <SectionStyle className={'main__section'}>
@@ -79,9 +107,9 @@ const App = () => {
                 <Route path='/Cash-In' component={Cash} />
               </Switch>
             </SectionStyle>
+            <BetInformation />
           </AppContext.Provider>
         </MainStyle>
-        <Footer />
       </Container>
     </Router >
   );

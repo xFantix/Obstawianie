@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, } from 'react';
 import styled from 'styled-components'
 import { useForm } from "react-hook-form";
 
@@ -9,7 +9,7 @@ const HeaderStyle = styled.h1`
     color:white;
     font-size:55px;
     letter-spacing:10px;
-    margin-left:5%;
+    text-align:center;
     display:block;
     padding:30px 0px;
     font-weight:300;
@@ -21,8 +21,8 @@ const HeaderStyle = styled.h1`
 const FormStyle = styled.form`
     display:flex;
     flex-direction:column;
-    padding-left:5%;
     margin-bottom:30px;
+    align-items:center;
     @media(max-width:700px){
         align-items:center;
         padding-left:0;
@@ -40,7 +40,7 @@ const InputStyle = styled.input`
     border-radius:2px;
     margin-bottom:10px;
 `
-const SubmitStyle = styled.input`
+const ButtonStyle = styled.button`
     width:60%;
     background-color:#0fb85e;
     border:none;
@@ -58,20 +58,18 @@ const Cash = () => {
     const { register, handleSubmit, errors } = useForm();
 
 
-    const { firstName, lastName, email, valueMoney, changeInputValue } = useContext(AppContext);
+    const { firstName, lastName, email, valueMoney, changeInputValue, handleSendSubmit, bankMoney } = useContext(AppContext);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-    }
+
 
     return (
         <>
             <HeaderStyle>
                 CASH IN
             </HeaderStyle>
-            <FormStyle onSubmit={handleSubmit(onSubmit)}>
+            <FormStyle onSubmit={handleSubmit(handleSendSubmit)}>
 
-                <LabelStyle>First Name: </LabelStyle>
+                <LabelStyle >First Name: </LabelStyle>
                 <InputStyle
                     name="firstName"
                     ref={register({ required: true, minLength: 1 })}
@@ -100,7 +98,7 @@ const Cash = () => {
                     type="number"
                     onChange={changeInputValue} />
                 {errors.firstName && <p style={{ color: "red", padding: "10px 0px", fontFamily: 'Roboto', fontSize: 15 }}>Required</p>}
-                <SubmitStyle type="submit" value="Send Money" />
+                <ButtonStyle>Send Money</ButtonStyle>
             </FormStyle>
 
 
