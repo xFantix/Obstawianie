@@ -11,6 +11,7 @@ import LeagueOfLegends from './Components/LeagueOfLegends';
 import Cash from './Components/Cash';
 import BetInformation from './Components/BetInformation'
 
+
 const Container = styled.div`
   min-height:100vh;
   min-width:100%;
@@ -29,7 +30,7 @@ const SectionStyle = styled.section`
   display:flex;
   flex-direction:column;
   padding:30px 0px;
-  @media(max-width:700px){
+  @media(max-width:800px){
     width:100%;
   }
 `
@@ -44,6 +45,7 @@ const App = () => {
   const [bankMoney, setbankMoney] = useState(0);
 
   const [yourBets, setyourBets] = useState([]);
+
 
 
 
@@ -73,11 +75,17 @@ const App = () => {
   const handleBetTeam = (e) => {
     e.preventDefault();
 
+
     let Bet = {
-      betTeam: e.target.name,
+      betTeam: e.target.id,
       betValue: e.target.value,
+      betMatch: e.target.name,
+      id: yourBets.length,
     }
+
     setyourBets((prevState) => [...prevState, Bet]);
+
+
   }
 
 
@@ -96,7 +104,7 @@ const App = () => {
               bankMoney,
               handleSendSubmit,
               handleBetTeam,
-              setyourBets,
+              yourBets,
             }}
           >
             <SectionStyle className={'main__section'}>

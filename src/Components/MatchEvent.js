@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { AppContext } from './Context/AppContext'
+
+
+
 const ContainerStyle = styled.div`
     /* border:1px solid #f7f70a; */
     display:flex;
@@ -49,6 +52,7 @@ const FootballElement = (props) => {
 
     const { handleBetTeam } = useContext(AppContext);
 
+
     return (
         <ContainerStyle className={'ContainerMatch'}>
             <ListStyle className={'ContainerMatch__Teams__List'}>
@@ -60,9 +64,9 @@ const FootballElement = (props) => {
                 </StyleListElements>
             </ListStyle>
             <ContainerButton className={'ContainerMatch__buttonValue'}>
-                <ButtonStyle value={HomeWin} onClick={handleBetTeam} name={HomeName}  >{HomeWin}</ButtonStyle>
-                {Draw && <ButtonStyle value={Draw} onClick={handleBetTeam} name="Draw" >{Draw}</ButtonStyle>}
-                <ButtonStyle name={VisitName} value={VisitWin} onClick={handleBetTeam}>{VisitWin}</ButtonStyle>
+                <ButtonStyle value={HomeWin} id={HomeName} onClick={handleBetTeam} name={`${HomeName} vs ${VisitName}`}  >{HomeWin}</ButtonStyle>
+                {Draw && <ButtonStyle id="Draw" value={Draw} onClick={handleBetTeam} name={`${HomeName} vs ${VisitName}`} >{Draw}</ButtonStyle>}
+                <ButtonStyle id={VisitName} name={`${HomeName} vs ${VisitName}`} value={VisitWin} onClick={handleBetTeam}>{VisitWin}</ButtonStyle>
             </ContainerButton>
         </ContainerStyle>
     );

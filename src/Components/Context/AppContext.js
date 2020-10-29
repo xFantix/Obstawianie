@@ -8,7 +8,7 @@ export const defaultObject = {
     valueMoney: 0,
 
     bankMoney: "",
-    setyourBets: [],
+    yourBets: [],
     changeInputValue: () => { },
     handleSendSubmit: () => { },
     handleBetTeam: () => { }

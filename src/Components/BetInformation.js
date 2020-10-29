@@ -12,6 +12,10 @@ const Container = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
+    @media(max-width:800px)
+    {
+        width:100%;
+    }
     
 `
 const HeaderStyle = styled.h1`
@@ -26,8 +30,12 @@ const HeaderStyle = styled.h1`
 `
 const InformationStyle = styled.div`
     background-color:#42413E;
-    width:50%;
+    width:60%;
     border-radius:3px;
+    @media(max-width:800px)
+    {
+        width:80%;
+    }
 `
 const InfoAccount = styled.h2`
 font-family: 'Roboto', sans-serif;
@@ -37,13 +45,50 @@ font-weight:400;
 padding:20px;
 `
 
+const BetStyle = styled.div`
+
+    display:flex;
+    background-color:#282728;
+    color:white;
+    font-size:15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight:200;
+    padding:20px;
+    justify-content:space-around;
+    border-bottom:1px solid grey;
+`
+const BetContainer = styled.div`
+    display:flex;
+    padding:20px;
+    width:100%;
+    justify-content:space-around;
+`
+const ButtonBet = styled.button`
+    border:none;
+    color:white;
+    padding:10px 30px;
+    background-color:#282728;
+    cursor: pointer;
+`
+
+
 const BetInformation = () => {
 
 
-    const { setyourBets, bankMoney, } = useContext(AppContext);
+    const { yourBets, bankMoney, } = useContext(AppContext);
 
 
+    const matchList = yourBets.map(element =>
 
+        <BetStyle>
+            <p>{element.betMatch}</p>
+            <p><b>{element.betTeam}</b></p>
+            <p style={{ color: "#0df005", }}>{element.betValue}</p>
+        </BetStyle>
+
+    );
+
+    const howWin = yourBets.forEach(element => element * bankMoney);
 
     return (
 
@@ -52,7 +97,15 @@ const BetInformation = () => {
             <InformationStyle>
                 <InfoAccount>Your Accoutn: {bankMoney} euro</InfoAccount>
 
+                {matchList}
+
+                <BetContainer>
+                    <ButtonBet >Bet</ButtonBet>
+                    <input type="text" />
+                </BetContainer>
+
             </InformationStyle>
+
         </Container>
 
     );
