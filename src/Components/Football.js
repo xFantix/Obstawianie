@@ -14,8 +14,8 @@ const FootballList = [
     },
     {
         id: 2,
-        HomeName: "Bayern Monachium",
-        VisitName: "Borussia Dortmund",
+        HomeName: "Mainz",
+        VisitName: "Augsburg",
         HomeWin: 1.59,
         VisitWin: 2.30,
         Draw: 3.80,
@@ -23,8 +23,8 @@ const FootballList = [
     },
     {
         id: 3,
-        HomeName: "Olimpia Grudziądz",
-        VisitName: "Wigry Suwałki",
+        HomeName: "Nantes",
+        VisitName: "PSG",
         HomeWin: 2.30,
         VisitWin: 1.80,
         Draw: 2.76,
@@ -32,8 +32,8 @@ const FootballList = [
     },
     {
         id: 4,
-        HomeName: "Juventus Turyn",
-        VisitName: "Fc Napoli",
+        HomeName: "Chelsea",
+        VisitName: "Burnley",
         HomeWin: 1.80,
         VisitWin: 2.30,
         Draw: 3.10,
@@ -41,8 +41,8 @@ const FootballList = [
     },
     {
         id: 5,
-        HomeName: "Legia Warszawa",
-        VisitName: "Lechia Gdańsk",
+        HomeName: "Liverpool",
+        VisitName: "GKS Olimpia",
         HomeWin: 1.80,
         VisitWin: 2.30,
         Draw: 3.10,

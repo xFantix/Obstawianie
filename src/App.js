@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 
-import { AppContext, defaultObject } from './Components/Context/AppContext'
+import { AppContext } from './Components/Context/AppContext'
 
 import Header from './Components/Header'
 import Football from './Components/Football'
@@ -46,7 +46,7 @@ const App = () => {
 
   const [yourBets, setyourBets] = useState([]);
 
-
+  const [sendMoneyForBet, setsendMoneyForBet] = useState(0);
 
 
 
@@ -61,11 +61,10 @@ const App = () => {
     else if (name === "lastName") setLastName(value);
     else if (name === "email") setEmail(value);
     else if (name === "valueMoney") setValueMoney(value);
-
+    else if (name === "sendMoneyForBet") setsendMoneyForBet(value);
   }
 
   const handleSendSubmit = (e) => {
-    // e.preventDefault();
 
     let value = parseInt(valueMoney);
     setbankMoney((prevState) => prevState + value)
@@ -73,8 +72,6 @@ const App = () => {
   }
 
   const handleBetTeam = (e) => {
-    e.preventDefault();
-
 
     let Bet = {
       betTeam: e.target.id,
@@ -83,8 +80,48 @@ const App = () => {
       id: yourBets.length,
     }
 
-    setyourBets((prevState) => [...prevState, Bet]);
+    if (yourBets.find(element => element.betMatch === Bet.betMatch && element.betTeam === Bet.betTeam)) {
+      let index = yourBets.findIndex(element => element.betMatch === Bet.betMatch);
+      let array = [...yourBets];
+      console.log(index);
+      array.splice(index, 1);
+      setyourBets(array);
+      e.target.style.color = "white";
+      return;
+    }
 
+    else if (yourBets.find(element => element.betMatch === Bet.betMatch)) {
+      return;
+    }
+
+    setyourBets((prevState) => [...prevState, Bet]);
+    e.target.style.color = "#33d900";
+  }
+
+
+  const sendYourBet = () => {
+
+    if (yourBets.length > 0 && (bankMoney > sendMoneyForBet)) {
+
+      const valueMultiplier = yourBets.reduce((a, b) => {
+        return a * b.betValue;
+      }, 1)
+
+
+      let winOrLost = Math.floor(Math.random() * 2);
+      let value = parseInt((Math.round(100 * (sendMoneyForBet * valueMultiplier)) / 100));
+
+      if (winOrLost) {
+        setbankMoney((prevState) => prevState + value);
+        setyourBets([]);
+      }
+      else {
+        setbankMoney((prevState) => prevState - value);
+        setyourBets([]);
+      }
+
+
+    }
 
   }
 
@@ -105,6 +142,8 @@ const App = () => {
               handleSendSubmit,
               handleBetTeam,
               yourBets,
+              sendMoneyForBet,
+              sendYourBet,
             }}
           >
             <SectionStyle className={'main__section'}>

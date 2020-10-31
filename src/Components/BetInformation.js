@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components'
 
-
 import { AppContext } from './Context/AppContext'
 
 
@@ -38,11 +37,11 @@ const InformationStyle = styled.div`
     }
 `
 const InfoAccount = styled.h2`
-font-family: 'Roboto', sans-serif;
-font-size:18px;
-color:white;
-font-weight:400;
-padding:20px;
+    font-family: 'Roboto', sans-serif;
+    font-size:18px;
+    color:white;
+    font-weight:400;
+    padding:15px 20px;
 `
 
 const BetStyle = styled.div`
@@ -69,18 +68,32 @@ const ButtonBet = styled.button`
     padding:10px 30px;
     background-color:#282728;
     cursor: pointer;
+    width:40%;
 `
 
+
+const InputNumberStyle = styled.input`
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    width:40%;
+    padding-left:20px;
+    font-family: 'Roboto', sans-serif;
+`
 
 const BetInformation = () => {
 
 
-    const { yourBets, bankMoney, } = useContext(AppContext);
+    const { yourBets, bankMoney, sendMoneyForBet, changeInputValue, sendYourBet } = useContext(AppContext);
+
+
+    const valueMultiplier = yourBets.reduce((a, b) => {
+        return a * b.betValue;
+    }, 1)
 
 
     const matchList = yourBets.map(element =>
 
-        <BetStyle>
+        <BetStyle key={element.id}>
             <p>{element.betMatch}</p>
             <p><b>{element.betTeam}</b></p>
             <p style={{ color: "#0df005", }}>{element.betValue}</p>
@@ -88,20 +101,29 @@ const BetInformation = () => {
 
     );
 
-    const howWin = yourBets.forEach(element => element * bankMoney);
 
     return (
+
 
         <Container>
             <HeaderStyle>Your Bets</HeaderStyle>
             <InformationStyle>
-                <InfoAccount>Your Accoutn: {bankMoney} euro</InfoAccount>
+                <InfoAccount>
+                    Your Accoutn: {bankMoney} euro
+                </InfoAccount>
 
+                <InfoAccount>
+                    Multiplier: {valueMultiplier !== 1 && Math.round(100 * valueMultiplier) / 100}
+                </InfoAccount>
+
+                <InfoAccount>
+                    Your Win: {valueMultiplier !== 1 ? (Math.round(100 * (sendMoneyForBet * valueMultiplier)) / 100) : 0} euro
+                </InfoAccount>
                 {matchList}
 
                 <BetContainer>
-                    <ButtonBet >Bet</ButtonBet>
-                    <input type="text" />
+                    <ButtonBet onClick={sendYourBet} >Bet</ButtonBet>
+                    <InputNumberStyle value={sendMoneyForBet} name="sendMoneyForBet" onChange={changeInputValue} type="number" min="0" />
                 </BetContainer>
 
             </InformationStyle>

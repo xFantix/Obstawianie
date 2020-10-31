@@ -6,12 +6,14 @@ export const defaultObject = {
     lastName: "",
     email: "",
     valueMoney: 0,
-
+    sendMoneyForBet: 0,
     bankMoney: "",
     yourBets: [],
     changeInputValue: () => { },
     handleSendSubmit: () => { },
-    handleBetTeam: () => { }
+    handleBetTeam: () => { },
+    clearBetList: () => { },
+    sendYourBet: () => { }
 }
 
 export const AppContext = createContext(defaultObject);
