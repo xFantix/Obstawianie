@@ -8,7 +8,7 @@ const LeagueOfLegends = () => {
         {
             id: 1,
             HomeName: "Excel Esports",
-            VisitName: "DAMWON Gaming",
+            VisitName: "DRX",
             HomeWin: 1.89,
             VisitWin: 2.10,
 
@@ -43,7 +43,7 @@ const LeagueOfLegends = () => {
         },
         {
             id: 5,
-            HomeName: "Unicorns Of Love",
+            HomeName: "Origen",
             VisitName: "Rainbow7",
             HomeWin: 1.80,
             VisitWin: 2.30,

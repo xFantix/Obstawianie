@@ -34,7 +34,7 @@ const Header = () => {
         <HeaderWrapper className={'header'}>
             <Navigation className={'header__navigation'}>
 
-                <StyledNavLink activeStyle={{ color: '#deb028', }} className={'header__navigation__navLink'} to='/Football'>
+                <StyledNavLink activeStyle={{ color: '#deb028', }} className={'header__navigation__navLink'} exact to='/'>
                     Football
                     </StyledNavLink>
                 <StyledNavLink activeStyle={{ color: '#deb028', }} className={'header__navigation__navLink'} to='/Counter-Strike'>

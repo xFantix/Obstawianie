@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { useState } from 'react';
 import styled from 'styled-components'
 
@@ -99,7 +99,7 @@ const App = () => {
   }
 
 
-  const sendYourBet = () => {
+  const sendYourBet = (e) => {
 
     if (yourBets.length > 0 && (bankMoney > sendMoneyForBet)) {
 
@@ -114,10 +114,12 @@ const App = () => {
       if (winOrLost) {
         setbankMoney((prevState) => prevState + value);
         setyourBets([]);
+
       }
       else {
         setbankMoney((prevState) => prevState - value);
         setyourBets([]);
+
       }
 
 
@@ -148,7 +150,7 @@ const App = () => {
           >
             <SectionStyle className={'main__section'}>
               <Switch>
-                <Route path='/Football' exact component={Football} />
+                <Route path='/' exact component={Football} />
                 <Route path='/Counter-Strike' component={CounterStrike} />
                 <Route path='/League-Of-Legends' component={LeagueOfLegends} />
                 <Route path='/Cash-In' component={Cash} />

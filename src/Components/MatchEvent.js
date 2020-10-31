@@ -66,9 +66,12 @@ const ButtonStyle = styled.button`
 
 const FootballElement = (props) => {
 
+
+
     const { HomeName, VisitName, HomeWin, VisitWin, Draw, } = props.element
 
-    const { handleBetTeam } = useContext(AppContext);
+    const { handleBetTeam, buttons } = useContext(AppContext);
+
 
 
     return (
