@@ -5,7 +5,7 @@ import {ButtonStyle,InputStyle,LabelStyle,FormStyle,HeaderStyle}from '../styledC
 
 const Cash = () => {
     const { register, handleSubmit, errors } = useForm();
-    const { formState, changeInputValue, handleSendSubmit} = useContext(AppContext);
+    const { changeInputValue, handleSendSubmit} = useContext(AppContext);
     return (
         <>
             <HeaderStyle>
@@ -35,7 +35,7 @@ const Cash = () => {
                     id="email"
                     name="email"
                     ref={register({ required: true, minLength: 1 })}
-                    type="text"
+                    type="email"
                     onChange={changeInputValue} />
                 {errors.email && <p style={{ color: "red", padding: "10px 0px", fontFamily: 'Roboto', fontSize: 15 }}>Required</p>}
                 <LabelStyle htmlFor="valueMoney">Value: </LabelStyle>
