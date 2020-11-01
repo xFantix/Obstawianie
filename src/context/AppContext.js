@@ -2,13 +2,15 @@ import { createContext } from 'react';
 
 export const defaultObject = {
 
-    firstName: "",
-    lastName: "",
-    email: "",
-    valueMoney: 0,
-    sendMoneyForBet: 0,
-    bankMoney: "",
-    yourBets: [],
+    formState:{
+        firstName: '',
+        lastName: '',
+        email: '',
+        valueMoney: 0,
+        bankMoney: 0,
+        yourBets:[],
+        sendMoneyForBet: 0
+    },
     changeInputValue: () => { },
     handleSendSubmit: () => { },
     handleBetTeam: () => { },

@@ -1,150 +1,88 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { useState } from 'react';
-import styled from 'styled-components'
-
-import { AppContext } from './Components/Context/AppContext'
-
+import { AppContext } from './context/AppContext'
 import Header from './Components/Header'
 import Football from './Components/Football'
 import CounterStrike from './Components/CounterStrike'
 import LeagueOfLegends from './Components/LeagueOfLegends';
 import Cash from './Components/Cash';
 import BetInformation from './Components/BetInformation'
-
-
-const Container = styled.div`
-  min-height:100vh;
-  min-width:100%;
-  background-color:#2e2d2b;
-  display:flex;
-  flex-direction:column;
-  `
-
-const MainStyle = styled.main`
-  width:100%;
-  display:flex;
-  flex-wrap:wrap;
-`
-const SectionStyle = styled.section`
-  width:50%;
-  display:flex;
-  flex-direction:column;
-  padding:30px 0px;
-  @media(max-width:800px){
-    width:100%;
-  }
-`
-
+import {Container,MainStyle,SectionStyle} from './styledComponents/appStyle'
 const App = () => {
 
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [valueMoney, setValueMoney] = useState(0);
-
-  const [bankMoney, setbankMoney] = useState(0);
-
-  const [yourBets, setyourBets] = useState([]);
-
-  const [sendMoneyForBet, setsendMoneyForBet] = useState(0);
-
-
+  const [formState, setFormState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    valueMoney: 0,
+    bankMoney: 0,
+    yourBets:[],
+    sendMoneyForBet: 0
+     });
 
   const changeInputValue = (e) => {
-
-    const name = e.target.name;
-    const value = e.target.value;
-
-    if (name === "firstName") {
-      { setfirstName(value) }
-    }
-    else if (name === "lastName") setLastName(value);
-    else if (name === "email") setEmail(value);
-    else if (name === "valueMoney") setValueMoney(value);
-    else if (name === "sendMoneyForBet") setsendMoneyForBet(value);
+    const { name, value } = e.target;
+    setFormState(prevState => ({ ...prevState, [name]: value }));
   }
-
-  const handleSendSubmit = (e) => {
-
-    let value = parseInt(valueMoney);
-    setbankMoney((prevState) => prevState + value)
-
+  const handleSendSubmit = () => {
+    const value = parseInt(formState.valueMoney);
+    setFormState((prevState) => prevState.bankMoney + value);
   }
-
   const handleBetTeam = (e) => {
-
-    let Bet = {
-      betTeam: e.target.id,
-      betValue: e.target.value,
-      betMatch: e.target.name,
-      id: yourBets.length,
+    const {id,value,name} = e.target; 
+    const bet = {
+      betTeam: id,
+      betValue: value,
+      betMatch: name,
+      id: formState.yourBets.length,
     }
-
-    if (yourBets.find(element => element.betMatch === Bet.betMatch && element.betTeam === Bet.betTeam)) {
-      let index = yourBets.findIndex(element => element.betMatch === Bet.betMatch);
-      let array = [...yourBets];
-      console.log(index);
+    const condition = formState.yourBets.find(element => element.betMatch === bet.betMatch && element.betTeam === bet.betTeam);
+    if (condition) {
+      const index = formState.yourBets.findIndex(element => element.betMatch === bet.betMatch);
+      const array = [...formState.yourBets];
       array.splice(index, 1);
-      setyourBets(array);
+      setFormState.yourBets(array);
       e.target.style.color = "white";
       return;
     }
-
-    else if (yourBets.find(element => element.betMatch === Bet.betMatch)) {
+    else if (formState.yourBets.find(element => element.betMatch === bet.betMatch)) {
       return;
     }
-
-    setyourBets((prevState) => [...prevState, Bet]);
+    setFormState((prevState) => [...prevState.yourBets,bet]);
     e.target.style.color = "#33d900";
   }
 
-
   const sendYourBet = (e) => {
-
-    if (yourBets.length > 0 && (bankMoney > sendMoneyForBet)) {
-
-      const valueMultiplier = yourBets.reduce((a, b) => {
+    const condition = formState.yourBets.length > 0 && (formState.bankMoney > formState.sendMoneyForBet);
+    if (condition) {
+      const valueMultiplier = formState.yourBets.reduce((a, b) => {
         return a * b.betValue;
-      }, 1)
-
-
-      let winOrLost = Math.floor(Math.random() * 2);
-      let value = parseInt((Math.round(100 * (sendMoneyForBet * valueMultiplier)) / 100));
-
+      }, 1);
+      const winOrLost = Math.floor(Math.random() * 2);
+      const value = parseInt((Math.round(100 * (formState.sendMoneyForBet * valueMultiplier)) / 100));
       if (winOrLost) {
-        setbankMoney((prevState) => prevState + value);
-        setyourBets([]);
-
+        setFormState((prevState) => prevState.bankMoney + value);
+        setFormState({...formState, yourBets: []})
       }
       else {
-        setbankMoney((prevState) => prevState - value);
-        setyourBets([]);
-
+        setFormState((prevState) => prevState.bankMoney - value);
+        setFormState({...formState, yourBets: []})
       }
-
-
     }
-
   }
 
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Container className="App">
         <Header />
         <MainStyle >
           <AppContext.Provider
             value={{
-              firstName,
-              lastName,
-              email,
-              valueMoney,
+              formState,
               changeInputValue,
-              bankMoney,
               handleSendSubmit,
               handleBetTeam,
-              yourBets,
-              sendMoneyForBet,
               sendYourBet,
             }}
           >
