@@ -10,24 +10,45 @@ import BetInformation from './Components/BetInformation'
 import {Container,MainStyle,SectionStyle} from './styledComponents/appStyle'
 const App = () => {
 
-  const [formState, setFormState] = useState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      valueMoney: 0,
-      bankMoney: 0,
-      sendMoneyForBet: 0,
-  });
+
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [valueMoney, setValueMoney] = useState(0);
+  const [bankMoney, setBankMoney] = useState(0);
+  const [sendMoneyForBet, setSendMoneyForBet] = useState(0);
   const [yourBets,setYourBets] = useState([]);
+  
+  
 
   const changeInputValue = (e) => {
     const { name, value } = e.target;
-   setFormState(prevState => ({ ...prevState, [name]: value }));
+      switch(name)
+      {
+        case 'firstName':
+          setfirstName(value);
+          break;
+        case 'lastName':
+          setLastName(value);
+          break;
+        case 'email':
+          setEmail(value);
+          break;
+        case 'valueMoney':
+          setValueMoney(value);
+          break;
+        case 'bankMoney':
+          setBankMoney(value);
+          break;
+        case 'sendMoneyForBet':
+          setSendMoneyForBet(value);
+          break;
+      }
   }
 
   const handleSendSubmit = () => {
-    const value = parseInt(formState.valueMoney);
-    setFormState((prevState) => prevState.bankMoney + value);
+    const value = parseInt(valueMoney);
+    setBankMoney((prevState) => prevState + value);
   }
 
   const handleBetTeam = (e) => {
@@ -47,31 +68,32 @@ const App = () => {
       console.log(index);
       array.splice(index, 1);
       setYourBets(array);
-      e.target.style.color = "white";
+
       return;
     }
     else if (yourBets.find(element => element.betMatch === bet.betMatch)) {
       return;
     }
     setYourBets((prevState) => [...prevState, bet]);
-    e.target.style.color = "#33d900";
+
   }
   
   const sendYourBet = (e) => {
-    const condition = yourBets.length > 0 && (formState.bankMoney > formState.sendMoneyForBet);
+    const condition = yourBets.length > 0 && (bankMoney > sendMoneyForBet);
     if (condition) {
-      const valueMultiplier = formState.yourBets.reduce((a, b) => {
+      const valueMultiplier = yourBets.reduce((a, b) => {
         return a * b.betValue;
       }, 1);
       const winOrLost = Math.floor(Math.random() * 2);
-      const value = parseInt((Math.round(100 * (formState.sendMoneyForBet * valueMultiplier)) / 100));
+      const value = parseInt((Math.round(100 * (sendMoneyForBet * valueMultiplier)) / 100));
       if (winOrLost) {
-        setFormState((prevState) => prevState.bankMoney + value);
+        setBankMoney((prevState) => bankMoney + value);
         setYourBets([]);
       }
       else {
-        setFormState((prevState) => prevState.bankMoney - value);
+        setBankMoney((prevState) => bankMoney - value);
         setYourBets([]);
+        
       }
     }
   }
@@ -82,7 +104,12 @@ const App = () => {
         <MainStyle >
           <AppContext.Provider
             value={{
-              formState,
+              firstName,
+              lastName,
+              email,
+              valueMoney,
+              bankMoney,
+              sendMoneyForBet,
               yourBets,
               changeInputValue,
               handleSendSubmit,

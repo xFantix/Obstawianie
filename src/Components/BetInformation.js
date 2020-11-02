@@ -4,7 +4,7 @@ import {InputNumberStyle,ButtonBet,BetContainer,BetStyle,InfoAccount,Information
 
 const BetInformation = () => {
     
-    const { formState, changeInputValue, sendYourBet,yourBets } = useContext(AppContext);
+    const { bankMoney,sendMoneyForBet, changeInputValue, sendYourBet,yourBets } = useContext(AppContext);
     const valueMultiplier =yourBets.reduce((a, b) => {
         return a * b.betValue;
       }, 1);
@@ -17,9 +17,9 @@ const BetInformation = () => {
         </BetStyle>
     );
 
-    const yourAccount = formState.bankMoney;
+    const yourAccount = bankMoney;
     const multiplier = valueMultiplier !== 1 && Math.round(100 * valueMultiplier) / 100;
-    const yourWin = valueMultiplier !== 1 ? (Math.round(100 * (formState.sendMoneyForBet * valueMultiplier)) / 100) : 0;
+    const yourWin = valueMultiplier !== 1 ? (Math.round(100 * (sendMoneyForBet * valueMultiplier)) / 100) : 0;
     return (
         <Container>
             <HeaderStyle>Your Bets</HeaderStyle>
@@ -36,7 +36,7 @@ const BetInformation = () => {
                 {matchList}
                 <BetContainer>
                     <ButtonBet onClick={sendYourBet} >Bet</ButtonBet>
-                    <InputNumberStyle value={formState.sendMoneyForBet} name="sendMoneyForBet" onChange={changeInputValue} type="number" min="0" max="100000"/>
+                    <InputNumberStyle value={sendMoneyForBet} name="sendMoneyForBet" onChange={changeInputValue} type="number" min="0" max="100000"/>
                 </BetContainer>
             </InformationStyle>
         </Container>

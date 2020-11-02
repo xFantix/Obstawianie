@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-
 const entryAnimation = keyframes`
     0%{
         transform:translateX(-50%);
@@ -47,15 +46,19 @@ const ContainerButton = styled.div`
         width:50%;
     }
 `
-const ButtonStyle = styled.button`
+
+const ButtonStyle = styled.button.attrs(props=>({
+    colorType:props.colorType || "white"
+}))`
     background: #282728;
     border: none;
     outline: none;
     cursor: pointer;
-    color:white;
+    color:${props=>props.colorType};
     height:70%;
     width:80px;
     border-radius:2px;
     margin:0px 10px;   
+
 `
 export{ButtonStyle,ContainerButton,ListStyle,StyleListElements,ContainerStyle,entryAnimation};

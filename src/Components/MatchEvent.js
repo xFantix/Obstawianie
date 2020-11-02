@@ -5,7 +5,7 @@ import {ButtonStyle,ContainerButton,ListStyle,StyleListElements,ContainerStyle} 
 
 const FootballElement = (props) => {
     const { HomeName, VisitName, HomeWin, VisitWin, Draw, } = props.element
-    const { handleBetTeam} = useContext(AppContext);
+    const { handleBetTeam,colorReset} = useContext(AppContext);
     return (
         <ContainerStyle className={'ContainerMatch'}>
             <ListStyle className={'ContainerMatch__Teams__List'}>
@@ -19,7 +19,7 @@ const FootballElement = (props) => {
             <ContainerButton className={'ContainerMatch__buttonValue'}>
                 <ButtonStyle value={HomeWin} id={HomeName} onClick={handleBetTeam} name={`${HomeName} vs ${VisitName}`}  >{HomeWin}</ButtonStyle>
                 {Draw && <ButtonStyle id="Draw" value={Draw} onClick={handleBetTeam} name={`${HomeName} vs ${VisitName}`} >{Draw}</ButtonStyle>}
-                <ButtonStyle id={VisitName} name={`${HomeName} vs ${VisitName}`} value={VisitWin} onClick={handleBetTeam}>{VisitWin}</ButtonStyle>
+                <ButtonStyle  colorType={colorReset} id={VisitName} name={`${HomeName} vs ${VisitName}`} value={VisitWin} onClick={handleBetTeam}>{VisitWin}</ButtonStyle>
             </ContainerButton>
         </ContainerStyle>
     );
