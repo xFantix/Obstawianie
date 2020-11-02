@@ -29,10 +29,12 @@ Live Page 💻
 <h2>
 Screens 📷
 </h2>
-![screen1](https://user-images.githubusercontent.com/48121526/97910646-570a2480-1d4a-11eb-87c0-0f4285cbe0eb.png)
+![screen1](https://user-images.githubusercontent.com/48121526/97911202-2bd40500-1d4b-11eb-9c57-eb9f8747794b.png)
 <br/>
-![screen2](https://user-images.githubusercontent.com/48121526/97910742-73a65c80-1d4a-11eb-8e03-a56c688cc5b9.png)
-<br/>
-![mobile1](https://user-images.githubusercontent.com/48121526/97910835-98023900-1d4a-11eb-88f4-ce372858cb43.png)
+![screen2](https://user-images.githubusercontent.com/48121526/97911235-37273080-1d4b-11eb-97c8-890ab1bd37e0.png)
 
+<br/>
+![mobile1](https://user-images.githubusercontent.com/48121526/97911253-40b09880-1d4b-11eb-8d26-ca65a4731756.png)
+
+<br/>
 <footer> 	👦 <a href="https://www.facebook.com/kamil.jankowski.319">Kamil Jankowski</a> 	👦 </footer>
