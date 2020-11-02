@@ -30,10 +30,10 @@ Live Page 💻
 Screens 📷
 </h2>
 ![screen1](https://user-images.githubusercontent.com/48121526/97911202-2bd40500-1d4b-11eb-9c57-eb9f8747794b.png)
-<br/>
+
 ![screen2](https://user-images.githubusercontent.com/48121526/97911235-37273080-1d4b-11eb-97c8-890ab1bd37e0.png)
 
-<br/>
+
 ![mobile1](https://user-images.githubusercontent.com/48121526/97911253-40b09880-1d4b-11eb-8d26-ca65a4731756.png)
 
 <br/>
