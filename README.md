@@ -20,6 +20,7 @@ Tech/Framewor 🔧
 <ul>
 <li>React</li>
 <li>React-hook-form</li>
+  <li>React-Context</li>
 <li>Styled-Component</li>
 </ul>
 <h2>
