@@ -26,7 +26,7 @@ Tech/Framewor 🔧
 <h2>
 Live Page 💻
 </h2>
-<a>https://xfantix.github.io/React-Obstawianie/</a>
+<a href="https://xfantix.github.io/React-Obstawianie/">https://xfantix.github.io/React-Obstawianie/</a>
 <h2>
 Screens 📷
 </h2>
