@@ -36,7 +36,8 @@ const BetInformation = () => {
                 {matchList}
                 <BetContainer>
                     <ButtonBet onClick={sendYourBet} >Bet</ButtonBet>
-                    <InputNumberStyle value={sendMoneyForBet} name="sendMoneyForBet" onChange={changeInputValue} type="number" min="0" max="100000"/>
+                    <InputNumberStyle value={sendMoneyForBet} name="sendMoneyForBet" onChange={changeInputValue} type="number" min='0'
+                    max='1000'/>
                 </BetContainer>
             </InformationStyle>
         </Container>

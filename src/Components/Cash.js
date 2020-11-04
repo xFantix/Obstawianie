@@ -5,7 +5,7 @@ import {ButtonStyle,InputStyle,LabelStyle,FormStyle,HeaderStyle}from '../styledC
 
 const Cash = () => {
     const { register, handleSubmit, errors } = useForm();
-    const { changeInputValue, handleSendSubmit} = useContext(AppContext);
+    const { changeInputValue, handleSendSubmit,firstName,lastName,email,valueMoney,} = useContext(AppContext);
     return (
         <>
             <HeaderStyle>
@@ -20,6 +20,7 @@ const Cash = () => {
                     name="firstName"
                     ref={register({ required: true, minLength: 1 })}
                     onChange={changeInputValue}
+                    value={firstName}
                     type="text" />
                 {errors.firstName && <p style={{ color: "red", padding: "10px 0px", fontFamily: 'Roboto', fontSize: 15 }}>Required</p>}
                 <LabelStyle htmlFor="lastName">Last Name: </LabelStyle>
@@ -28,6 +29,7 @@ const Cash = () => {
                     name="lastName"
                     ref={register({ required: true, minLength: 1 })}
                     type="text"
+                    value={lastName}
                     onChange={changeInputValue} />
                 {errors.lastName && <p style={{ color: "red", padding: "10px 0px", fontFamily: 'Roboto', fontSize: 15 }}>Required</p>}
                 <LabelStyle htmlFor="email">Email: </LabelStyle>
@@ -36,6 +38,7 @@ const Cash = () => {
                     name="email"
                     ref={register({ required: true, minLength: 1 })}
                     type="email"
+                    value={email}
                     onChange={changeInputValue} />
                 {errors.email && <p style={{ color: "red", padding: "10px 0px", fontFamily: 'Roboto', fontSize: 15 }}>Required</p>}
                 <LabelStyle htmlFor="valueMoney">Value: </LabelStyle>
@@ -44,6 +47,9 @@ const Cash = () => {
                     name="valueMoney"
                     ref={register({ required: true, minLength: 1 })}
                     type="number"
+                    min='0'
+                    max='1000'
+                    value={valueMoney}
                     onChange={changeInputValue} />
                 {errors.valueMoney && <p style={{ color: "red", padding: "10px 0px", fontFamily: 'Roboto', fontSize: 15 }}>Required</p>}
                 <ButtonStyle>Send Money</ButtonStyle>
